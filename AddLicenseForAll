@@ -1,0 +1,15 @@
+#add a license for all active users
+
+$path = Import-CSV "C:\Desktop\ATPList.csv" #read CSV
+
+$path | ForEach-Object {
+
+    $upn = $_.email
+
+    Set-MsolUserLicense -UserPrincipalName $upn -AddLicenses "<ORGANIZATION>:THREAT_INTELLIGENCE" # Can be subbed with any other license FQDN
+
+    "License added for " + $upn
+}
+    
+    
+    
